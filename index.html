@@ -92,7 +92,7 @@ footer{padding:32px 0 48px;font-size:.9rem;opacity:.8;text-align:center}
 <body>
 <header class="hero">
   <div class="wrap">
-    <nav class="nav" aria-label="Navigation principale"><a class="logo" href="#">Cahier de français</a><a href="#cours">Cours</a><a href="#exercice">Exercices</a><a href="#abonnements">Abonnements</a><a href="#faq">Questions</a></nav>
+    <nav class="nav" aria-label="Navigation principale"><a class="logo" href="#">Cahier de français</a><a href="#cours">Cours</a><a href="#exercice">Exercices</a><a href="#abonnements">Abonnements</a><a href="#faq">Questions</a><a href="https://calendar.app.google/iMZoef5fyc74MUpJ6" target="_blank" rel="noopener">Réserver</a></nav>
     <div class="hero-grid">
       <div>
         <h1>Parlez français avec confiance.</h1>
@@ -178,7 +178,7 @@ footer{padding:32px 0 48px;font-size:.9rem;opacity:.8;text-align:center}
   <section id="faq">
     <h2>Questions fréquentes</h2>
     <details><summary>Quel niveau faut-il avoir pour commencer ?</summary><p>Aucun. Nous déterminons votre niveau ensemble lors du premier cours, du débutant complet à l’avancé.</p></details>
-    <details><summary>Puis-je arrêter mon abonnement quand je veux ?</summary><p>Oui. Les abonnements sont sans engagement et se résilient à tout moment.</p></details>
+    <details><summary>Puis-je arrêter mon abonnement quand je veux ?</summary><p>Oui. Les abonnements sont sans engagement et se résilient à tout moment, en autonomie, depuis <a href="https://billing.stripe.com/p/login/bJebJ261O6IqeEU0k3eAg00" target="_blank" rel="noopener" style="color:inherit;font-weight:700">votre espace abonné</a>.</p></details>
     <details><summary>Comment se déroulent les cours en direct ?</summary><p>En visioconférence, en petit groupe, pour que chacun puisse parler et être corrigé.</p></details>
     <details><summary>Préparez-vous aux examens DELF et DALF ?</summary><p>Oui, avec la formule Accompagné : plan d’étude personnalisé et entraînement aux épreuves.</p></details>
   </section>
@@ -186,7 +186,7 @@ footer{padding:32px 0 48px;font-size:.9rem;opacity:.8;text-align:center}
   <div class="final">
     <h2>Prêt à parler français&nbsp;?</h2>
     <p>Réservez votre cours d’essai offert et dites-moi ce que vous voulez apprendre.</p>
-    <a class="btn" href="mailto:remani.islam2014@gmail.com?subject=Cours%20d%E2%80%99essai%20de%20fran%C3%A7ais">Réserver mon cours d’essai</a>
+    <a class="btn" href="https://calendar.app.google/iMZoef5fyc74MUpJ6" target="_blank" rel="noopener">Réserver mon cours d’essai</a>
   </div>
 </main>
 <div class="legal">
@@ -204,7 +204,7 @@ footer{padding:32px 0 48px;font-size:.9rem;opacity:.8;text-align:center}
     <p><b>Médiation :</b> en cas de litige, vous pouvez recourir gratuitement à un médiateur de la consommation. Médiateur : à compléter.</p>
   </details>
 </div>
-<footer>Cahier de français · Cours de français en ligne · remani.islam2014@gmail.com</footer>
+<footer>Cahier de français · Cours de français en ligne · remani.islam2014@gmail.com<span id="portail-w" hidden> · <a id="portail" href="#" style="color:inherit">Gérer mon abonnement</a></span></footer>
 <script>
 (function(){
 var S=[
@@ -232,6 +232,9 @@ tabs();show();
 // Collez ici vos liens de paiement Stripe ou PayPal entre les guillemets (ils doivent commencer par https://).
 var LIENS={essentiel:"https://buy.stripe.com/bJebJ261O6IqeEU0k3eAg00",progression:"https://buy.stripe.com/7sY4gA89WfeW1S86IreAg01",accompagne:"https://buy.stripe.com/aFa8wQ4XK8QygN2d6PeAg02"};
 document.querySelectorAll("[data-plan]").forEach(function(a){var l=LIENS[a.dataset.plan];if(l&&l.indexOf("https://")===0){a.href=l;a.target="_blank";a.rel="noopener";}});
+// Collez ici le lien du portail client Stripe (https://billing.stripe.com/...) pour afficher « Gérer mon abonnement ».
+var PORTAIL="https://billing.stripe.com/p/login/bJebJ261O6IqeEU0k3eAg00";
+if(PORTAIL.indexOf("https://")===0){document.getElementById("portail").href=PORTAIL;document.getElementById("portail-w").hidden=false;}
 </script>
 </body>
 </html>
