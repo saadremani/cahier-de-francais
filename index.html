@@ -73,6 +73,7 @@ h2{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:800;color:var(--ink)}
 .plan .btn{text-align:center}
 .plan:not(.best) .btn{background:var(--blue);color:#fff}
 .garantie{margin-top:24px;font-weight:600}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.tab{font:700 .95rem Figtree,sans-serif;padding:8px 16px;border-radius:999px;border:2px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}.tab[aria-pressed="true"]{background:var(--ink);color:var(--card)}
 .steps{display:grid;gap:14px;margin-top:28px;counter-reset:s}@media (min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}.step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px}.step b{display:block;color:var(--ink)}.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--yellow);color:#161a3a;font-weight:800;margin-bottom:8px}
 .prof{display:flex;gap:20px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;margin-top:24px}
 .avatar{flex:none;width:76px;height:76px;border-radius:50%;background:var(--pink);display:grid;place-items:center;font:800 2.2rem "Bricolage Grotesque",sans-serif;color:#161a3a}
@@ -96,7 +97,7 @@ footer{padding:32px 0 48px;font-size:.9rem;opacity:.8;text-align:center}
       <div>
         <h1>Parlez français avec confiance.</h1>
         <p class="lead">Des cours en ligne qui partent de vos vraies phrases, corrigées avec bienveillance, à votre rythme.</p>
-        <a class="btn" href="#abonnements">Voir les abonnements</a> <a class="btn ghost" href="#exercice">Tester votre niveau</a>
+        <a class="btn" href="#abonnements">Voir les abonnements</a> <a class="btn ghost" href="#exercice">Essayer un exercice</a>
       </div>
       <div class="bulles" aria-hidden="true">
         <div class="bulle">«&nbsp;Bonjour&nbsp;! Comment allez-vous&nbsp;?&nbsp;»</div>
@@ -125,29 +126,15 @@ footer{padding:32px 0 48px;font-size:.9rem;opacity:.8;text-align:center}
   </section>
 
   <section id="exercice">
-    <h2>Essayez maintenant : le ou la&nbsp;?</h2>
-    <p class="sub">Choisissez l’article qui convient à chaque mot.</p>
+    <h2>Exercices gratuits</h2>
+    <p class="sub">Choisissez un thème et entraînez-vous : la correction est immédiate.</p>
+    <div class="tabs" id="tabs"></div>
     <div class="quiz">
       <div class="prog" id="prog"></div>
-      <div class="mot" id="mot"></div>
-      <div class="opts">
-        <button class="opt" data-a="le">le</button>
-        <button class="opt" data-a="la">la</button>
-      </div>
+      <div class="mot phrase" id="mot"></div>
+      <div class="opts" id="opts"></div>
       <div id="retour" role="status" aria-live="polite"></div>
-      <button class="btn alt" id="suite" hidden>Mot suivant</button>
-    </div>
-  </section>
-
-  <section id="exercice2">
-    <h2>Encore un&nbsp;: le passé composé</h2>
-    <p class="sub">Choisissez la forme correcte pour compléter chaque phrase.</p>
-    <div class="quiz">
-      <div class="prog" id="q2prog"></div>
-      <div class="mot phrase" id="q2phrase"></div>
-      <div class="opts" id="q2opts"></div>
-      <div id="q2ret" role="status" aria-live="polite"></div>
-      <button class="btn alt" id="q2next" hidden>Phrase suivante</button>
+      <button class="btn alt" id="suite" type="button" hidden>Question suivante</button>
     </div>
   </section>
 
@@ -158,7 +145,7 @@ footer{padding:32px 0 48px;font-size:.9rem;opacity:.8;text-align:center}
       <article class="plan">
         <h3>Essentiel</h3>
         <div class="prix">19&nbsp;€ <small>/ mois</small></div>
-        <ul><li>Exercices illimités avec correction détaillée</li><li>Un parcours guidé selon votre niveau</li><li>Fiches de grammaire et de vocabulaire</li></ul>
+        <ul><li>Accès à tous les exercices corrigés</li><li>Nouveaux thèmes ajoutés régulièrement</li><li>Réponses à vos questions par e-mail</li></ul>
         <a class="btn" data-plan="essentiel" href="mailto:remani.islam2014@gmail.com?subject=Abonnement%20Essentiel">Choisir Essentiel</a>
       </article>
       <article class="plan best">
@@ -190,7 +177,7 @@ footer{padding:32px 0 48px;font-size:.9rem;opacity:.8;text-align:center}
 
   <section id="faq">
     <h2>Questions fréquentes</h2>
-    <details><summary>Quel niveau faut-il avoir pour commencer ?</summary><p>Aucun. Un court test de niveau vous place dans le parcours qui vous convient, du débutant complet à l’avancé.</p></details>
+    <details><summary>Quel niveau faut-il avoir pour commencer ?</summary><p>Aucun. Nous déterminons votre niveau ensemble lors du premier cours, du débutant complet à l’avancé.</p></details>
     <details><summary>Puis-je arrêter mon abonnement quand je veux ?</summary><p>Oui. Les abonnements sont sans engagement et se résilient à tout moment.</p></details>
     <details><summary>Comment se déroulent les cours en direct ?</summary><p>En visioconférence, en petit groupe, pour que chacun puisse parler et être corrigé.</p></details>
     <details><summary>Préparez-vous aux examens DELF et DALF ?</summary><p>Oui, avec la formule Accompagné : plan d’étude personnalisé et entraînement aux épreuves.</p></details>
@@ -220,55 +207,25 @@ footer{padding:32px 0 48px;font-size:.9rem;opacity:.8;text-align:center}
 <footer>Cahier de français · Cours de français en ligne · remani.islam2014@gmail.com</footer>
 <script>
 (function(){
-  var mots=[["soleil","le"],["maison","la"],["problème","le"],["voiture","la"],["main","la"],["travail","le"]];
-  var i=0,score=0;
-  var $=function(id){return document.getElementById(id)};
-  var btns=document.querySelectorAll(".opt");
-  function afficher(){
-    if(i>=mots.length){
-      $("prog").textContent="";$("mot").textContent="Terminé !";
-      $("retour").textContent="Votre score : "+score+" sur "+mots.length+".";
-      $("retour").className="ok";
-      btns.forEach(function(b){b.disabled=true});
-      $("suite").textContent="Recommencer";$("suite").hidden=false;$("suite").dataset.fin="1";return;
-    }
-    $("prog").textContent="Mot "+(i+1)+" sur "+mots.length;
-    $("mot").textContent=mots[i][0];
-    $("retour").textContent="";$("retour").className="";
-    btns.forEach(function(b){b.disabled=false});
-    $("suite").hidden=true;
-  }
-  btns.forEach(function(b){b.addEventListener("click",function(){
-    var bon=mots[i][1],rep=b.dataset.a;
-    btns.forEach(function(x){x.disabled=true});
-    if(rep===bon){score++;$("retour").className="ok";$("retour").textContent="Bravo ! On dit « "+bon+" "+mots[i][0]+" ».";}
-    else{$("retour").className="ko";$("retour").textContent="Pas tout à fait : on dit « "+bon+" "+mots[i][0]+" ».";}
-    $("suite").textContent=i===mots.length-1?"Voir mon score":"Mot suivant";
-    $("suite").hidden=false;$("suite").dataset.fin="";
-  })});
-  $("suite").addEventListener("click",function(){
-    if(this.dataset.fin){i=0;score=0;}else{i++;}
-    afficher();
-  });
-  afficher();
-})();
-</script>
-<script>
-(function(){
-  var Q=[["Hier, nous ___ au cinéma.",["avons allé","sommes allés","allions"],1,"Le verbe aller se conjugue avec être."],["Elle ___ son devoir ce matin.",["a fini","est finie","finissait"],0,"Finir se conjugue avec avoir."],["Ils ___ partis très tôt.",["ont","sont","avaient"],1,"Partir se conjugue avec être."],["J’___ mangé une pomme.",["ai","suis","avais"],0,"Manger se conjugue avec avoir."],["Tu ___ tombé dans l’escalier ?",["as","es","est"],1,"Tomber se conjugue avec être."]];
-  var i=0,s=0,$=function(id){return document.getElementById(id)},box=$("q2opts");
-  function show(){
-    if(i>=Q.length){$("q2phrase").textContent="Terminé !";$("q2prog").textContent="";box.textContent="";$("q2ret").className="ok";$("q2ret").textContent="Votre score : "+s+" sur "+Q.length+".";$("q2next").textContent="Recommencer";$("q2next").hidden=false;$("q2next").dataset.fin="1";return;}
-    $("q2prog").textContent="Phrase "+(i+1)+" sur "+Q.length;
-    $("q2phrase").textContent=Q[i][0];$("q2ret").textContent="";$("q2ret").className="";$("q2next").hidden=true;box.textContent="";
-    Q[i][1].forEach(function(t,k){var b=document.createElement("button");b.className="opt";b.textContent=t;b.addEventListener("click",function(){
-      box.querySelectorAll("button").forEach(function(x){x.disabled=true});
-      if(k===Q[i][2]){s++;$("q2ret").className="ok";$("q2ret").textContent="Bravo ! "+Q[i][3];}
-      else{$("q2ret").className="ko";$("q2ret").textContent="Pas tout à fait : la bonne réponse est « "+Q[i][1][Q[i][2]]+" ». "+Q[i][3];}
-      $("q2next").textContent=i===Q.length-1?"Voir mon score":"Phrase suivante";$("q2next").hidden=false;$("q2next").dataset.fin="";});box.appendChild(b);});
-  }
-  $("q2next").addEventListener("click",function(){if(this.dataset.fin){i=0;s=0;}else{i++;}show();});
-  show();
+var S=[
+{n:"Le ou la ?",h:"Choisissez l’article.",big:1,q:[
+["soleil",["le","la"],0,"On dit « le soleil »."],["maison",["le","la"],1,"On dit « la maison »."],["problème",["le","la"],0,"On dit « le problème »."],["voiture",["le","la"],1,"On dit « la voiture »."],["main",["le","la"],1,"On dit « la main »."],["travail",["le","la"],0,"On dit « le travail »."],["idée",["le","la"],1,"On dit « une idée » : « l’idée » est féminin."],["arbre",["le","la"],0,"On dit « l’arbre » : il est masculin."]]},
+{n:"Passé composé",h:"Choisissez la forme correcte.",q:[
+["Hier, nous ___ au cinéma.",["avons allé","sommes allés","allions"],1,"Aller se conjugue avec être."],["Elle ___ son devoir ce matin.",["a fini","est finie","finissait"],0,"Finir se conjugue avec avoir."],["Ils ___ partis très tôt.",["ont","sont","avaient"],1,"Partir se conjugue avec être."],["J’___ mangé une pomme.",["ai","suis","avais"],0,"Manger se conjugue avec avoir."],["Tu ___ tombé dans l’escalier ?",["as","es","est"],1,"Tomber se conjugue avec être."],["Nous ___ fini le travail.",["avons","sommes","avions"],0,"Finir se conjugue avec avoir."],["Elle ___ née en mai.",["a","est","était"],1,"Naître se conjugue avec être."],["Vous ___ regardé ce film ?",["avez","êtes","aviez"],0,"Regarder se conjugue avec avoir."]]},
+{n:"Prépositions",h:"Choisissez la préposition.",q:[
+["Je vais ___ Paris.",["à","en","dans"],0,"Devant une ville : à."],["Il habite ___ France.",["à","en","au"],1,"Devant un pays féminin : en."],["Nous partons ___ Japon.",["en","au","à"],1,"Devant un pays masculin : au."],["Le livre est ___ la table.",["sur","dans","à"],0,"Posé dessus : sur."],["Elle arrive ___ dix minutes.",["dans","en","depuis"],0,"Dans indique un moment futur."],["J’attends ___ deux heures.",["depuis","dans","pour"],0,"Depuis indique une durée jusqu’à maintenant."],["Je pense ___ mes vacances.",["à","de","sur"],0,"On dit « penser à »."],["Il a besoin ___ aide.",["de","à","pour"],0,"On dit « avoir besoin de »."]]},
+{n:"Être, avoir, aller",h:"Choisissez le bon verbe.",q:[
+["Je ___ fatigué.",["suis","ai","vais"],0,"Être : je suis."],["Nous ___ un chat.",["avons","sommes","allons"],0,"Avoir : nous avons."],["Comment ça ___ ?",["va","est","a"],0,"Aller : ça va."],["Tu ___ de la chance.",["es","as","vas"],1,"Avoir : tu as."],["Vous ___ prêts ?",["êtes","avez","allez"],0,"Être : vous êtes."],["Elle ___ vingt ans.",["est","a","va"],1,"On a un âge : elle a."],["J’___ faim.",["ai","suis","vais"],0,"Avoir faim : j’ai."],["Elles ___ leurs clés.",["ont","sont","vont"],0,"Avoir : elles ont."]]}
+];
+var $=function(i){return document.getElementById(i)},t=0,i=0,s=0;
+function tabs(){var T=$("tabs");T.textContent="";S.forEach(function(x,k){var b=document.createElement("button");b.className="tab";b.type="button";b.textContent=x.n;b.setAttribute("aria-pressed",k===t?"true":"false");b.onclick=function(){t=k;i=0;s=0;tabs();show()};T.appendChild(b)})}
+function show(){
+var Q=S[t].q,O=$("opts");O.textContent="";$("retour").textContent="";$("retour").className="";$("suite").hidden=true;$("suite").dataset.fin="";
+if(i>=Q.length){$("prog").textContent="";$("mot").className="mot";$("mot").textContent="Terminé !";$("retour").className="ok";$("retour").textContent="Votre score : "+s+" sur "+Q.length+".";$("suite").textContent="Recommencer";$("suite").dataset.fin="1";$("suite").hidden=false;return}
+var q=Q[i];$("prog").textContent="Question "+(i+1)+" sur "+Q.length+" · "+S[t].h;$("mot").className=S[t].big?"mot":"mot phrase";$("mot").textContent=q[0];
+q[1].forEach(function(o,k){var b=document.createElement("button");b.className="opt";b.type="button";b.textContent=o;b.onclick=function(){O.querySelectorAll("button").forEach(function(x){x.disabled=true});var ok=k===q[2];if(ok)s++;$("retour").className=ok?"ok":"ko";$("retour").textContent=(ok?"Bravo ! ":"Pas tout à fait : la bonne réponse est « "+q[1][q[2]]+" ». ")+q[3];$("suite").textContent=i===Q.length-1?"Voir mon score":"Question suivante";$("suite").hidden=false};O.appendChild(b)})}
+$("suite").onclick=function(){if(this.dataset.fin){i=0;s=0}else{i++}show()};
+tabs();show();
 })();
 </script>
 <script>
