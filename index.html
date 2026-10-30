@@ -73,6 +73,7 @@ h2{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:800;color:var(--ink)}
 .plan .btn{text-align:center}
 .plan:not(.best) .btn{background:var(--blue);color:#fff}
 .garantie{margin-top:24px;font-weight:600}
+.steps{display:grid;gap:14px;margin-top:28px;counter-reset:s}@media (min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}.step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px}.step b{display:block;color:var(--ink)}.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--yellow);color:#161a3a;font-weight:800;margin-bottom:8px}
 .prof{display:flex;gap:20px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;margin-top:24px}
 .avatar{flex:none;width:76px;height:76px;border-radius:50%;background:var(--pink);display:grid;place-items:center;font:800 2.2rem "Bricolage Grotesque",sans-serif;color:#161a3a}
 .prof p{margin:0}
@@ -158,23 +159,28 @@ footer{padding:32px 0 48px;font-size:.9rem;opacity:.8;text-align:center}
         <h3>Essentiel</h3>
         <div class="prix">19&nbsp;€ <small>/ mois</small></div>
         <ul><li>Exercices illimités avec correction détaillée</li><li>Un parcours guidé selon votre niveau</li><li>Fiches de grammaire et de vocabulaire</li></ul>
-        <a class="btn" href="mailto:remani.islam2014@gmail.com?subject=Abonnement%20Essentiel">Choisir Essentiel</a>
+        <a class="btn" data-plan="essentiel" href="mailto:remani.islam2014@gmail.com?subject=Abonnement%20Essentiel">Choisir Essentiel</a>
       </article>
       <article class="plan best">
         <span class="tag">Le plus choisi</span>
         <h3>Progression</h3>
         <div class="prix">49&nbsp;€ <small>/ mois</small></div>
         <ul><li>Tout l’abonnement Essentiel</li><li>Deux cours collectifs en direct par mois</li><li>Correction de vos textes écrits</li><li>Groupe d’entraide entre apprenants</li></ul>
-        <a class="btn" href="mailto:remani.islam2014@gmail.com?subject=Abonnement%20Progression">Choisir Progression</a>
+        <a class="btn" data-plan="progression" href="mailto:remani.islam2014@gmail.com?subject=Abonnement%20Progression">Choisir Progression</a>
       </article>
       <article class="plan">
         <h3>Accompagné</h3>
         <div class="prix">149&nbsp;€ <small>/ mois</small></div>
         <ul><li>Tout l’abonnement Progression</li><li>Quatre cours individuels par mois</li><li>Plan d’étude personnalisé</li><li>Préparation au DELF ou au DALF</li></ul>
-        <a class="btn" href="mailto:remani.islam2014@gmail.com?subject=Abonnement%20Accompagn%C3%A9">Choisir Accompagné</a>
+        <a class="btn" data-plan="accompagne" href="mailto:remani.islam2014@gmail.com?subject=Abonnement%20Accompagn%C3%A9">Choisir Accompagné</a>
       </article>
     </div>
     <p class="garantie">Remboursement intégral du premier mois si la formule ne vous convient pas.</p>
+    <div class="steps">
+      <div class="step"><b>Choisissez votre formule</b>Cliquez sur le bouton de la formule qui vous convient.</div>
+      <div class="step"><b>Réglez en toute sécurité</b>Paiement par Stripe ou PayPal, sans engagement.</div>
+      <div class="step"><b>Réservez votre premier cours</b>Nous fixons ensemble un créneau pour commencer.</div>
+    </div>
   </section>
 
   <section>
@@ -201,12 +207,12 @@ footer{padding:32px 0 48px;font-size:.9rem;opacity:.8;text-align:center}
     <p><b>Éditeur du site :</b> Saad, enseignant de français en ligne. Contact : remani.islam2014@gmail.com</p>
     <p><b>Numéro SIRET :</b> 833 686 470 00034</p>
     <p><b>Hébergeur :</b> GitHub Inc. (GitHub Pages), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis</p>
-    <p><b>Données personnelles :</b> votre adresse e’mail n’est utilisée que pour répondre à vos demandes et gérer votre abonnement. Vous pouvez demander son accès, sa correction ou sa suppression en écrivant à l’adresse ci-dessus.</p>
+    <p><b>Données personnelles :</b> votre adresse e-mail n’est utilisée que pour répondre à vos demandes et gérer votre abonnement. Vous pouvez demander son accès, sa correction ou sa suppression en écrivant à l’adresse ci-dessus.</p>
   </details>
   <details><summary>Conditions générales de vente</summary>
     <p><b>Objet :</b> vente d’abonnements mensuels à des cours de français en ligne (formules Essentiel, Progression et Accompagné).</p>
     <p><b>Prix :</b> indiqués en euros par mois. Le paiement se fait en ligne par un service de paiement sécurisé (Stripe ou PayPal).</p>
-    <p><b>Durée et résiliation :</b> l’abonnement est mensuel et se renouvelle chaque mois. Vous pouvez le résilier à tout moment par e’mail ; il s’arrête à la fin de la période déjà payée.</p>
+    <p><b>Durée et résiliation :</b> l’abonnement est mensuel et se renouvelle chaque mois. Vous pouvez le résilier à tout moment par e-mail ; il s’arrête à la fin de la période déjà payée.</p>
     <p><b>Droit de rétractation :</b> vous disposez de 14 jours à compter de la souscription pour vous rétracter, sans donner de motif, en écrivant à l’adresse de contact. Si vous demandez que les cours commencent avant la fin de ce délai, vous réglez la part de service déjà fournie. En outre, le premier mois est remboursé si la formule ne vous convient pas.</p>
     <p><b>Médiation :</b> en cas de litige, vous pouvez recourir gratuitement à un médiateur de la consommation. Médiateur : à compléter.</p>
   </details>
@@ -264,6 +270,11 @@ footer{padding:32px 0 48px;font-size:.9rem;opacity:.8;text-align:center}
   $("q2next").addEventListener("click",function(){if(this.dataset.fin){i=0;s=0;}else{i++;}show();});
   show();
 })();
+</script>
+<script>
+// Collez ici vos liens de paiement Stripe ou PayPal entre les guillemets (ils doivent commencer par https://).
+var LIENS={essentiel:"",progression:"",accompagne:""};
+document.querySelectorAll("[data-plan]").forEach(function(a){var l=LIENS[a.dataset.plan];if(l&&l.indexOf("https://")===0){a.href=l;a.target="_blank";a.rel="noopener";}});
 </script>
 </body>
 </html>
