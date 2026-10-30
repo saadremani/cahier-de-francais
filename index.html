@@ -273,7 +273,7 @@ footer{padding:32px 0 48px;font-size:.9rem;opacity:.8;text-align:center}
 </script>
 <script>
 // Collez ici vos liens de paiement Stripe ou PayPal entre les guillemets (ils doivent commencer par https://).
-var LIENS={essentiel:"",progression:"",accompagne:""};
+var LIENS={essentiel:"https://buy.stripe.com/bJebJ261O6IqeEU0k3eAg00",progression:"https://buy.stripe.com/7sY4gA89WfeW1S86IreAg01",accompagne:"https://buy.stripe.com/aFa8wQ4XK8QygN2d6PeAg02"};
 document.querySelectorAll("[data-plan]").forEach(function(a){var l=LIENS[a.dataset.plan];if(l&&l.indexOf("https://")===0){a.href=l;a.target="_blank";a.rel="noopener";}});
 </script>
 </body>
