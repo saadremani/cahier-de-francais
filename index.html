@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Français avec Saad – Apprendre le français – Cours de français</title>
 <meta name="description" content="Apprenez le français avec Saad : cours de français en ligne pour adultes, cours en direct, exercices corrigés et accompagnement, du niveau débutant (A1) au niveau A2 et au-delà.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Français avec Saad – Apprendre le français – Cours de français">
+<meta property="og:description" content="Apprenez le français avec Saad : cours de français en ligne pour adultes, cours en direct, exercices corrigés et accompagnement, du niveau débutant (A1) au niveau A2 et au-delà.">
+<meta property="og:url" content="https://saadremani.github.io/cahier-de-francais/">
+<link rel="canonical" href="https://saadremani.github.io/cahier-de-francais/">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Figtree:wght@400;600;700&display=swap">
 <style>
 :root{--bg:#f6f7ff;--text:#161a3a;--card:#fff;--line:#dfe3fb;--blue:#2438d6;--ink:#2438d6;--yellow:#ffd23f;--pink:#ff6fa8;--ok:#0a8f68;--ko:#d6336c;
@@ -92,12 +98,12 @@ footer{padding:32px 0 48px;font-size:.9rem;opacity:.8;text-align:center}
 <body>
 <header class="hero">
   <div class="wrap">
-    <nav class="nav" aria-label="Navigation principale"><a class="logo" href="#">Français avec Saad</a><a href="#cours">Cours</a><a href="#exercice">Exercices</a><a href="#abonnements">Abonnements</a><a href="#faq">Questions</a><a href="https://calendar.app.google/iMZoef5fyc74MUpJ6" target="_blank" rel="noopener">Réserver</a><a href="membres.html">Espace élèves</a></nav>
+    <nav class="nav" aria-label="Navigation principale"><a class="logo" href="#">Français avec Saad</a><a href="#cours">Cours</a><a href="niveau-a1.html">Niveau A1</a><a href="niveau-a2.html">Niveau A2</a><a href="niveau-b1.html">Niveau B1</a><a href="#exercice">Exercices</a><a href="#abonnements">Abonnements</a><a href="#faq">Questions</a><a href="https://calendar.app.google/iMZoef5fyc74MUpJ6" target="_blank" rel="noopener">Réserver</a><a href="membres.html">Espace élèves</a></nav>
     <div class="hero-grid">
       <div>
         <h1>Parlez français avec confiance.</h1>
         <p class="lead">Des cours en ligne qui partent de vos vraies phrases, corrigées avec bienveillance, à votre rythme.</p>
-        <a class="btn" href="#abonnements">Voir les abonnements</a> <a class="btn ghost" href="#exercice">Essayer un exercice</a>
+        <a class="btn" href="#abonnements">Voir les abonnements</a> <a class="btn ghost" href="#test">Test de niveau gratuit</a>
       </div>
       <div class="bulles" aria-hidden="true">
         <div class="bulle">«&nbsp;Bonjour&nbsp;! Comment allez-vous&nbsp;?&nbsp;»</div>
@@ -125,10 +131,21 @@ footer{padding:32px 0 48px;font-size:.9rem;opacity:.8;text-align:center}
     </div>
   </section>
 
+  <section id="test">
+    <h2>Testez votre niveau en 3 minutes</h2>
+    <p class="sub">12 questions pour estimer votre niveau, de A1 à B1. Le résultat est indicatif.</p>
+    <div class="quiz">
+      <div class="prog" id="t-prog"></div>
+      <div class="mot phrase" id="t-q"></div>
+      <div class="opts" id="t-o"></div>
+      <div id="t-res" hidden></div>
+    </div>
+  </section>
+
   <section id="a2">
     <h2>Besoin du niveau A2 pour votre titre de séjour&nbsp;?</h2>
     <p class="sub">Depuis le 1er janvier 2026, un niveau A2 de français est exigé pour une première carte de séjour pluriannuelle, et le niveau B1 pour la carte de résident. Je vous prépare pas à pas, avec des cours en direct et des exercices corrigés.</p>
-    <p class="sub"><small>Mes cours préparent votre niveau de français. L’examen officiel (DELF, TCF…) se passe dans un centre agréé et aucun résultat n’est garanti. Vérifiez les conditions sur service-public.fr.</small></p>
+    <p class="sub"><small>Mes cours préparent votre niveau de français. L’examen officiel (DELF, TCF…) se passe dans un centre agréé et aucun résultat n’est garanti. Vérifiez les conditions sur service-public.fr. <a href="titre-de-sejour-niveau-a2.html">En savoir plus</a>.</small></p>
     <p><a class="btn" href="https://calendar.app.google/iMZoef5fyc74MUpJ6" target="_blank" rel="noopener">Réserver un cours d’essai offert</a></p>
   </section>
 
@@ -233,6 +250,44 @@ var q=Q[i];$("prog").textContent="Question "+(i+1)+" sur "+Q.length+" · "+S[t].
 q[1].forEach(function(o,k){var b=document.createElement("button");b.className="opt";b.type="button";b.textContent=o;b.onclick=function(){O.querySelectorAll("button").forEach(function(x){x.disabled=true});var ok=k===q[2];if(ok)s++;$("retour").className=ok?"ok":"ko";$("retour").textContent=(ok?"Bravo ! ":"Pas tout à fait : la bonne réponse est « "+q[1][q[2]]+" ». ")+q[3];$("suite").textContent=i===Q.length-1?"Voir mon score":"Question suivante";$("suite").hidden=false};O.appendChild(b)})}
 $("suite").onclick=function(){if(this.dataset.fin){i=0;s=0}else{i++}show()};
 tabs();show();
+})();
+</script>
+<script>
+(function(){
+var CAL="https://calendar.app.google/iMZoef5fyc74MUpJ6";
+var Q=[
+["Je ___ étudiant.",["suis","es","est"],0],
+["Elle ___ deux frères.",["a","est","as"],0],
+["Comment tu ___ ?",["m’appelle","t’appelles","appelles"],1],
+["J’habite ___ Paris.",["au","à","aux"],1],
+["Hier, nous ___ au cinéma.",["avons allé","allons","sommes allés"],2],
+["Demain, je ___ visiter Lyon.",["ai","vais","suis"],1],
+["Tu connais Paul ? — Oui, je ___ vois souvent.",["la","les","le"],2],
+["Paris est ___ grande que Lyon.",["très","plus","assez"],1],
+["Quand j’étais petit, je ___ au football.",["jouais","ai joué","jouerai"],0],
+["Il faut que tu ___ à l’heure.",["viens","venir","viennes"],2],
+["Si j’avais le temps, je ___ voyager.",["peux","pourrais","pourrai"],1],
+["Le livre ___ je parle est intéressant.",["que","dont","qui"],1]
+];
+var $=function(i){return document.getElementById(i)},i=0,sc=[0,0,0];
+function show(){
+var o=$("t-o");o.textContent="";
+if(i>=Q.length){end();return}
+$("t-prog").textContent="Question "+(i+1)+" sur "+Q.length;$("t-q").textContent=Q[i][0];
+Q[i][1].forEach(function(t,k){var b=document.createElement("button");b.className="opt";b.type="button";b.textContent=t;b.onclick=function(){if(k===Q[i][2])sc[Math.floor(i/4)]++;i++;show()};o.appendChild(b)})}
+function end(){
+$("t-prog").textContent="";$("t-q").textContent="Résultat";$("t-o").textContent="";
+var a=sc[0],b=sc[1],c=sc[2],n,m;
+if(a<3){n="A1 (débutant)";m="Vous débutez : le parcours A1 est fait pour vous."}
+else if(b<3){n="A1";m="Vous avez de bonnes bases : visez maintenant le niveau A2."}
+else if(c<3){n="A2";m="Bravo, vous avez le niveau A2 : consolidez-le et avancez vers le B1."}
+else{n="B1 ou plus";m="Votre niveau dépasse le A2 : nous pouvons travailler le B1 et au-delà."}
+var r=$("t-res");r.textContent="";r.hidden=false;
+var p=document.createElement("p");p.className="ok";p.textContent="Niveau estimé : "+n+" ("+(a+b+c)+" bonnes réponses sur 12). "+m;r.appendChild(p);
+var s=document.createElement("p");s.style.fontSize=".9rem";s.textContent="Ce test est indicatif : il ne remplace pas un examen officiel (DELF, TCF…).";r.appendChild(s);
+var l=document.createElement("a");l.className="btn";l.href=CAL;l.target="_blank";l.rel="noopener";l.textContent="Réserver mon cours d’essai offert";r.appendChild(l);
+var rb=document.createElement("button");rb.className="btn alt";rb.type="button";rb.style.marginLeft="8px";rb.textContent="Refaire le test";rb.onclick=function(){i=0;sc=[0,0,0];r.hidden=true;show()};r.appendChild(rb)}
+show();
 })();
 </script>
 <script>
