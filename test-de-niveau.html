@@ -141,7 +141,7 @@ var OC=["J’ai parlé sans lire un texte.","J’ai fait des phrases complètes.
 var $=function(i){return document.getElementById(i)},app=$("app");
 var S={s:0,i:0,res:{ce:{},co:{},gr:{}},tr:false,text:"",oral:0,plays:0};
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
-function clear(){app.textContent="";window.scrollTo(0,0)}
+function clear(){app.textContent="";requestAnimationFrame(function(){var r=app.getBoundingClientRect();if(r.top<0||r.top>window.innerHeight*0.6){window.scrollTo({top:window.scrollY+r.top-12})}})}
 function nm(n){return n?LV[n-1]:"Pré-A1"}
 function levelFrom(r){var b=0;for(var j=0;j<4;j++){var c=r[LV[j]]||[0,0];if(c[1]&&c[0]>=Math.ceil(c[1]*0.6))b=j+1;else break}return b}
 function overall(){var a=[levelFrom(S.res.ce),levelFrom(S.res.gr)];if(!S.tr)a.push(levelFrom(S.res.co));a.sort(function(x,y){return x-y});return a.length===3?a[1]:Math.floor((a[0]+a[1])/2)}
