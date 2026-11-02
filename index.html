@@ -11,6 +11,9 @@
 <meta property="og:description" content="Apprenez le français avec Saad : cours de français en ligne pour adultes, cours en direct, exercices corrigés et accompagnement, du niveau débutant (A1) au niveau A2 et au-delà.">
 <meta property="og:url" content="https://saadremani.github.io/cahier-de-francais/">
 <link rel="canonical" href="https://saadremani.github.io/cahier-de-francais/">
+<meta name="theme-color" content="#2438d6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%232438d6'/%3E%3Ctext x='50' y='70' font-size='62' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'%3EF%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "EducationalOrganization", "name": "Français avec Saad", "url": "https://saadremani.github.io/cahier-de-francais/", "description": "Cours de français en ligne pour adultes, du niveau A1 au niveau B1.", "email": "remani.islam2014@gmail.com", "telephone": "+33634479652", "founder": {"@type": "Person", "name": "Saad Remani"}, "address": {"@type": "PostalAddress", "streetAddress": "8 B rue Abel", "postalCode": "75012", "addressLocality": "Paris", "addressCountry": "FR"}}</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Figtree:wght@400;600;700&display=swap">
 <style>
 :root{--bg:#f6f7ff;--text:#161a3a;--card:#fff;--line:#dfe3fb;--blue:#2438d6;--ink:#2438d6;--yellow:#ffd23f;--pink:#ff6fa8;--ok:#0a8f68;--ko:#d6336c;
@@ -83,7 +86,7 @@ h2{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:800;color:var(--ink)}
 .steps{display:grid;gap:14px;margin-top:28px;counter-reset:s}@media (min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}.step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px}.step b{display:block;color:var(--ink)}.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--yellow);color:#161a3a;font-weight:800;margin-bottom:8px}
 .prof{display:flex;gap:20px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;margin-top:24px}
 .avatar{flex:none;width:76px;height:76px;border-radius:50%;background:var(--pink);display:grid;place-items:center;font:800 2.2rem "Bricolage Grotesque",sans-serif;color:#161a3a}
-.prof p{margin:0}
+.prof p{margin:0 0 10px}.prof img{width:96px;height:96px;border-radius:50%;object-fit:cover;flex:none}
 details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 20px;margin-top:12px}
 summary{cursor:pointer;font-weight:700;color:var(--ink)}
 details p{margin:10px 0 2px}
@@ -98,7 +101,7 @@ footer{padding:32px 0 48px;font-size:.9rem;opacity:.8;text-align:center}
 <body>
 <header class="hero">
   <div class="wrap">
-    <nav class="nav" aria-label="Navigation principale"><a class="logo" href="#">Français avec Saad</a><a href="#cours">Cours</a><a href="test-de-niveau.html">Test de niveau</a><a href="niveau-a1.html">Niveau A1</a><a href="niveau-a2.html">Niveau A2</a><a href="niveau-b1.html">Niveau B1</a><a href="fiches-pratiques.html">Fiches</a><a href="preparer-delf-a2.html">DELF A2</a><a href="#exercice">Exercices</a><a href="#abonnements">Abonnements</a><a href="#faq">Questions</a><a href="https://calendar.app.google/iMZoef5fyc74MUpJ6" target="_blank" rel="noopener">Réserver</a><a href="membres.html">Espace élèves</a></nav>
+    <nav class="nav" aria-label="Navigation principale"><a class="logo" href="#">Français avec Saad</a><a href="#cours">Cours</a><a href="test-de-niveau.html">Test de niveau</a><a href="niveau-a1.html">Niveau A1</a><a href="niveau-a2.html">Niveau A2</a><a href="niveau-b1.html">Niveau B1</a><a href="fiches-pratiques.html">Fiches</a><a href="preparer-delf-a2.html">DELF A2</a><a href="#exercice">Exercices</a><a href="#abonnements">Abonnements</a><a href="#faq">Questions</a><a href="https://calendar.app.google/iMZoef5fyc74MUpJ6" target="_blank" rel="noopener">Réserver</a><a href="a-propos.html">À propos</a><a href="membres.html">Espace élèves</a></nav>
     <div class="hero-grid">
       <div>
         <h1>Parlez français avec confiance.</h1>
@@ -205,9 +208,9 @@ footer{padding:32px 0 48px;font-size:.9rem;opacity:.8;text-align:center}
     </div>
   </section>
 
-  <section>
+  <section id="prof">
     <h2>Votre professeur</h2>
-    <div class="prof"><div class="avatar" aria-hidden="true">S</div><p>Bonjour, je m’appelle Saad. Je vous accompagne pas à pas pour parler, écrire et comprendre le français avec plus d’aisance, à votre rythme.</p></div>
+    <div class="prof"><img src="saad.jpg" alt="Saad REMANI, formateur de français" width="96" height="96"><div><p>Bonjour, je m’appelle Saad. Je suis formateur de français langue étrangère depuis 2016. J’enseigne aux adultes et aux jeunes, du niveau A1 au niveau C1, notamment dans le cadre de formations liées à l’OFII. Je suis habilité TEF et formé à l’usage de l’IA en FLE.</p><p><a class="btn alt" href="a-propos.html">Lire mon parcours</a></p></div></div>
   </section>
 
   <section id="faq">
