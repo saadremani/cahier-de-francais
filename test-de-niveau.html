@@ -196,7 +196,7 @@ var cl=el("label","chk");var ck=el("input");ck.type="checkbox";cl.appendChild(ck
 var hp=el("input");hp.type="text";hp.name="_honey";hp.tabIndex=-1;hp.autocomplete="off";hp.style.cssText="position:absolute;left:-9999px";hp.setAttribute("aria-hidden","true");
 var send=el("button","btn","Envoyer mes résultats à Saad");send.type="button";
 var stt=el("p","fb","");stt.setAttribute("role","status");
-var fallback=el("button","btn alt","Copier mes résultats");fallback.type="button";fallback.hidden=true;fallback.style.marginLeft="8px";
+var mailL=el("a","btn alt","Écrire un e-mail à Saad");mailL.hidden=true;mailL.style.marginLeft="8px";var fallback=el("button","btn alt","Copier mes résultats");fallback.type="button";fallback.hidden=true;fallback.style.marginLeft="8px";
 fallback.onclick=function(){try{navigator.clipboard.writeText(summary+"\n\nMon texte :\n"+S.text);fallback.textContent="Copié !"}catch(e){}};
 send.onclick=function(){
 if(hp.value)return;
@@ -204,10 +204,12 @@ if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mailI.value.trim())){stt.className="fb ko"
 if(!ck.checked){stt.className="fb ko";stt.textContent="Cochez la case pour autoriser l’envoi.";return}
 send.disabled=true;stt.className="fb";stt.textContent="Envoi en cours…";
 fetch("https://formsubmit.co/ajax/"+MAIL,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({_subject:"Test de niveau – "+(nameI.value.trim()||"nouvel élève")+" – "+nm(g),_template:"box",_captcha:"false",email:mailI.value.trim(),prenom:nameI.value.trim(),resultats:summary,texte_ecrit:S.text||"(non rédigé)"})})
-.then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(r.ok&&String(j.success)!=="false"){stt.className="fb ok";stt.textContent="Merci ! Vos résultats sont envoyés. Saad vous répondra par e-mail."}else{throw new Error("x")}})})
-.catch(function(){send.disabled=false;stt.className="fb ko";stt.textContent="L’envoi a échoué. Réessayez, ou copiez vos résultats et écrivez à "+MAIL+".";fallback.hidden=false});
+.then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(r.ok&&String(j.success)!=="false"){stt.className="fb ok";stt.textContent="Merci ! Vos résultats sont envoyés. Saad vous répondra par e-mail."}else{throw new Error(j.message||"")}})})
+.catch(function(e){send.disabled=false;stt.className="fb ko";var act=e&&e.message&&/activ/i.test(e.message);
+stt.textContent=act?"Le service d’envoi attend une confirmation de Saad (première utilisation). Réessayez dans quelques minutes, ou utilisez les boutons ci-dessous.":"L’envoi a échoué. Réessayez, ou utilisez les boutons ci-dessous.";
+fallback.hidden=false;mailL.href="mailto:"+MAIL+"?subject="+encodeURIComponent("Mes résultats au test de niveau")+"&body="+encodeURIComponent((summary+"\n\nMon texte :\n"+S.text).slice(0,1500));mailL.hidden=false});
 };
-[nameI,mailI,cl,hp,send,fallback,stt].forEach(function(x){box.appendChild(x)});app.appendChild(box);
+[nameI,mailI,cl,hp,send,fallback,mailL,stt].forEach(function(x){box.appendChild(x)});app.appendChild(box);
 var b=el("a","btn alt","Réserver un cours d’essai offert");b.href=CAL;b.target="_blank";b.rel="noopener";b.style.marginLeft="8px";app.appendChild(b);
 var r=el("button","btn alt","Refaire le test");r.type="button";r.style.marginLeft="8px";r.onclick=function(){S={s:0,i:0,res:{ce:{},co:{},gr:{}},tr:false,text:"",oral:0,plays:0};intro()};app.appendChild(r)}
 intro();
