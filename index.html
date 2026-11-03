@@ -413,7 +413,7 @@ if(l==="fr"||!l){var m=document.cookie.match(/googtrans/);document.cookie="googt
 c.value=l;c.dispatchEvent(new Event("change"));return true}
 window.trInit=function(){new google.translate.TranslateElement({pageLanguage:"fr",autoDisplay:false},"google_translate_element");
 var n=0,t=setInterval(function(){n++;if(apply(want)||n>40)clearInterval(t)},150)};
-sel.onchange=function(){want=sel.value;if(!want)return;
+sel.onchange=function(){want=sel.value;if(!want)return;box.hidden=true;btn.setAttribute("aria-expanded","false");
 if(loaded){apply(want);return}
 loaded=true;var s=document.createElement("script");s.src="https://translate.google.com/translate_a/element.js?cb=trInit";s.onerror=function(){loaded=false};document.head.appendChild(s)};
 })();
