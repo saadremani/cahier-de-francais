@@ -400,22 +400,30 @@ body{top:0!important}.skiptranslate iframe.skiptranslate,iframe.goog-te-banner-f
 <option value="ar">العربية (arabe)</option><option value="en">English</option><option value="es">Español</option><option value="pt">Português</option><option value="tr">Türkçe</option><option value="ru">Русский</option><option value="uk">Українська</option><option value="fa">فارسی (persan)</option><option value="ps">پښتو (pachto)</option><option value="zh-CN">中文</option><option value="bn">বাংলা</option><option value="ta">தமிழ்</option><option value="ur">اردو</option><option value="vi">Tiếng Việt</option><option value="it">Italiano</option><option value="de">Deutsch</option><option value="fr">Français (original)</option>
 </select>
 <small>Traduction automatique par Google : elle peut contenir des erreurs. Les leçons, les tests et les exercices restent en français. En choisissant une langue, vous chargez un service de Google qui reçoit votre adresse IP.</small>
+<small id="tr-msg" role="status"></small>
 <button type="button" id="tr-close">Fermer / Close</button>
 </div>
 <div id="google_translate_element"></div>
 <script>
 (function(){
-var btn=document.getElementById("tr-btn"),box=document.getElementById("tr-box"),sel=document.getElementById("tr-sel"),loaded=false,want="";
-btn.onclick=function(){box.hidden=!box.hidden;btn.setAttribute("aria-expanded",String(!box.hidden))};
-document.getElementById("tr-close").onclick=function(){box.hidden=true;btn.setAttribute("aria-expanded","false")};
-function apply(l){var c=document.querySelector("select.goog-te-combo");if(!c)return false;
-if(l==="fr"||!l){var m=document.cookie.match(/googtrans/);document.cookie="googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";if(c.value){c.value="";c.dispatchEvent(new Event("change"));}return true}
-c.value=l;c.dispatchEvent(new Event("change"));return true}
-window.trInit=function(){new google.translate.TranslateElement({pageLanguage:"fr",autoDisplay:false},"google_translate_element");
-var n=0,t=setInterval(function(){n++;if(apply(want)||n>40)clearInterval(t)},150)};
-sel.onchange=function(){want=sel.value;if(!want)return;box.hidden=true;btn.setAttribute("aria-expanded","false");
-if(loaded){apply(want);return}
-loaded=true;var s=document.createElement("script");s.src="https://translate.google.com/translate_a/element.js?cb=trInit";s.onerror=function(){loaded=false};document.head.appendChild(s)};
+var btn=document.getElementById("tr-btn"),box=document.getElementById("tr-box"),sel=document.getElementById("tr-sel"),msg=document.getElementById("tr-msg");
+var host=location.hostname;
+function getLang(){var m=document.cookie.match(/(?:^|;\s*)googtrans=\/[^\/]*\/([A-Za-z-]+)/);return m?m[1]:""}
+function clearCk(){var e="googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";document.cookie=e;document.cookie=e+";domain="+host;document.cookie=e+";domain=."+host}
+function setCk(l){clearCk();document.cookie="googtrans=/fr/"+l+";path=/"}
+function open(o){box.hidden=!o;btn.setAttribute("aria-expanded",String(o))}
+btn.onclick=function(){open(box.hidden)};
+document.getElementById("tr-close").onclick=function(){open(false)};
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!box.hidden){open(false);btn.focus()}});
+document.addEventListener("click",function(e){if(!box.hidden&&!box.contains(e.target)&&e.target!==btn)open(false)});
+window.trInit=function(){try{new google.translate.TranslateElement({pageLanguage:"fr",autoDisplay:false},"google_translate_element")}catch(e){}};
+function load(){if(document.getElementById("tr-gs"))return;var s=document.createElement("script");s.id="tr-gs";s.src="https://translate.google.com/translate_a/element.js?cb=trInit";
+s.onerror=function(){msg.textContent="Service de traduction indisponible. / Translation unavailable.";box.hidden=false};document.head.appendChild(s)}
+var cur=getLang();
+if(cur&&cur!=="fr"){sel.value=cur;if(sel.value!==cur)sel.value="";load()}
+sel.onchange=function(){var l=sel.value;if(!l)return;msg.textContent="";open(false);
+if(l==="fr"){clearCk()}else{setCk(l)}
+location.reload()};
 })();
 </script>
 </body>
