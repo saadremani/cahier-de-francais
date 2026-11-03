@@ -132,8 +132,11 @@ body{top:0!important}.skiptranslate iframe.skiptranslate,iframe.goog-te-banner-f
 (function(){
 var btn=document.getElementById("tr-btn"),box=document.getElementById("tr-box"),sel=document.getElementById("tr-sel"),msg=document.getElementById("tr-msg");
 var host=location.hostname;
-function getLang(){var m=document.cookie.match(/(?:^|;\s*)googtrans=\/[^\/]*\/([A-Za-z-]+)/);return m?m[1]:""}
-function clearCk(){var e="googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";document.cookie=e;document.cookie=e+";domain="+host;document.cookie=e+";domain=."+host}
+function ckLang(){var m=document.cookie.match(/(?:^|;\s*)googtrans=\/[^\/]*\/([A-Za-z-]+)/);return m?m[1]:""}
+function stGet(){try{return localStorage.getItem("trlang")}catch(e){return null}}
+function stSet(v){try{localStorage.setItem("trlang",v)}catch(e){}}
+function getLang(){var s=stGet();return s!==null?s:ckLang()}
+function clearCk(){var e="googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;max-age=0;path=/",p=host.split("."),i;document.cookie=e;for(i=0;i<p.length-1;i++){var d=p.slice(i).join(".");document.cookie=e+";domain="+d;document.cookie=e+";domain=."+d}}
 function setCk(l){clearCk();document.cookie="googtrans=/fr/"+l+";path=/"}
 function open(o){box.hidden=!o;btn.setAttribute("aria-expanded",String(o))}
 btn.onclick=function(){open(box.hidden)};
@@ -144,9 +147,9 @@ window.trInit=function(){try{new google.translate.TranslateElement({pageLanguage
 function load(){if(document.getElementById("tr-gs"))return;var s=document.createElement("script");s.id="tr-gs";s.src="https://translate.google.com/translate_a/element.js?cb=trInit";
 s.onerror=function(){msg.textContent="Service de traduction indisponible. / Translation unavailable.";box.hidden=false};document.head.appendChild(s)}
 var cur=getLang();
-if(cur&&cur!=="fr"){sel.value=cur;if(sel.value!==cur)sel.value="";load()}
+if(cur&&cur!=="fr"){sel.value=cur;if(sel.value!==cur)sel.value="";setCk(cur);load()}else{clearCk();sel.value="fr"}
 sel.onchange=function(){var l=sel.value;if(!l)return;msg.textContent="";open(false);
-if(l==="fr"){clearCk()}else{setCk(l)}
+stSet(l);if(l==="fr"){clearCk()}else{setCk(l)}
 location.reload()};
 })();
 </script>
