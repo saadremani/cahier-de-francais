@@ -104,5 +104,43 @@ footer{padding:32px 0 48px;font-size:.9rem;opacity:.8;text-align:center}
 <div class="final"><h2>Envie d’aller plus loin&nbsp;?</h2><p>Réservez un cours d’essai offert : nous faisons le point sur votre niveau et vos objectifs.</p><a class="btn" href="https://calendar.app.google/iMZoef5fyc74MUpJ6" target="_blank" rel="noopener">Réserver mon cours d’essai</a></div>
 </main>
 <footer>Français avec Saad · Cours de français en ligne · <a href="./" style="color:inherit">Retour à l’accueil</a> · <a href="politique-de-confidentialite.html" style="color:inherit">Confidentialité</a><br>© 2026 Français avec Saad – tous droits réservés</footer>
+
+<!-- Traduction du site (Google Traduction, chargé seulement à la demande) -->
+<style>
+#tr-btn{position:fixed;left:14px;bottom:14px;z-index:60;font:700 .9rem Figtree,system-ui,sans-serif;background:#ffd23f;color:#161a3a;border:0;border-radius:999px;padding:10px 16px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+#tr-box{position:fixed;left:14px;bottom:62px;z-index:61;width:min(300px,calc(100vw - 28px));background:var(--card,#fff);color:var(--text,#161a3a);border:2px solid var(--blue,#2438d6);border-radius:16px;padding:14px;font:400 .95rem/1.5 Figtree,system-ui,sans-serif}
+#tr-box[hidden]{display:none}
+#tr-box select{width:100%;font:inherit;padding:10px;border-radius:10px;border:2px solid var(--line,#dfe3fb);background:var(--card,#fff);color:inherit;margin:8px 0}
+#tr-box small{display:block;opacity:.8}
+#tr-box button{font:700 .9rem Figtree,sans-serif;border:2px solid var(--blue,#2438d6);background:transparent;color:inherit;border-radius:999px;padding:6px 14px;cursor:pointer;margin-top:6px}
+@media (max-width:759px){#tr-btn{bottom:84px}#tr-box{bottom:132px}}
+body{top:0!important}.skiptranslate iframe.skiptranslate,iframe.goog-te-banner-frame{display:none!important}#google_translate_element{display:none}
+</style>
+<button id="tr-btn" type="button" class="notranslate" aria-expanded="false" aria-controls="tr-box">🌐 Traduire / Translate</button>
+<div id="tr-box" class="notranslate" hidden>
+<label for="tr-sel"><b>Langue / Language / اللغة</b></label>
+<select id="tr-sel">
+<option value="">Choisir… / Choose…</option>
+<option value="ar">العربية (arabe)</option><option value="en">English</option><option value="es">Español</option><option value="pt">Português</option><option value="tr">Türkçe</option><option value="ru">Русский</option><option value="uk">Українська</option><option value="fa">فارسی (persan)</option><option value="ps">پښتو (pachto)</option><option value="zh-CN">中文</option><option value="bn">বাংলা</option><option value="ta">தமிழ்</option><option value="ur">اردو</option><option value="vi">Tiếng Việt</option><option value="it">Italiano</option><option value="de">Deutsch</option><option value="fr">Français (original)</option>
+</select>
+<small>Traduction automatique par Google : elle peut contenir des erreurs. Les leçons, les tests et les exercices restent en français. En choisissant une langue, vous chargez un service de Google qui reçoit votre adresse IP.</small>
+<button type="button" id="tr-close">Fermer / Close</button>
+</div>
+<div id="google_translate_element"></div>
+<script>
+(function(){
+var btn=document.getElementById("tr-btn"),box=document.getElementById("tr-box"),sel=document.getElementById("tr-sel"),loaded=false,want="";
+btn.onclick=function(){box.hidden=!box.hidden;btn.setAttribute("aria-expanded",String(!box.hidden))};
+document.getElementById("tr-close").onclick=function(){box.hidden=true;btn.setAttribute("aria-expanded","false")};
+function apply(l){var c=document.querySelector("select.goog-te-combo");if(!c)return false;
+if(l==="fr"||!l){var m=document.cookie.match(/googtrans/);document.cookie="googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";if(c.value){c.value="";c.dispatchEvent(new Event("change"));}return true}
+c.value=l;c.dispatchEvent(new Event("change"));return true}
+window.trInit=function(){new google.translate.TranslateElement({pageLanguage:"fr",autoDisplay:false},"google_translate_element");
+var n=0,t=setInterval(function(){n++;if(apply(want)||n>40)clearInterval(t)},150)};
+sel.onchange=function(){want=sel.value;if(!want)return;
+if(loaded){apply(want);return}
+loaded=true;var s=document.createElement("script");s.src="https://translate.google.com/translate_a/element.js?cb=trInit";s.onerror=function(){loaded=false};document.head.appendChild(s)};
+})();
+</script>
 </body>
 </html>
