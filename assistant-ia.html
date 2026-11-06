@@ -240,7 +240,7 @@ call({mode:"correcteur",level:$("c-level").value,messages:[{role:"user",content:
 function chat(log,inp,btn,base,opts){
 var h=[];
 function add(role,text,hidden){var d=el("div","msg "+(role==="user"?"user":"bot"));d.appendChild(el("p",null,text));
-if(role!=="user"&&opts.speak&&window.speechSynthesis){var s=el("button","spk","🔊 Écouter");s.type="button";s.onclick=function(){try{var u=new SpeechSynthesisUtterance(text.split("💡")[0]);u.lang="fr-FR";u.rate=.9;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}};d.appendChild(s)}
+if(role!=="user"&&opts.speak&&window.speechSynthesis){var s=el("button","spk","🔊 Écouter");s.type="button";s.onclick=function(){try{if(!FRV.say(text)){s.textContent="🔇 Voix française absente";s.title=FRV.MSG}}catch(e){}};d.appendChild(s)}
 if(!hidden)log.appendChild(d);log.scrollTop=log.scrollHeight;return d}
 function send(text,hidden){
 if(!text)return;
@@ -273,6 +273,35 @@ document.addEventListener("click",function(e){var d=n.querySelector(".dd");if(d&
 document.addEventListener("keydown",function(e){if(e.key==="Escape"){set(false);var d=n.querySelector(".dd");if(d)d.open=false}});
 n.addEventListener("click",function(e){if(e.target.closest(".links a"))set(false)});
 })();
+</script>
+<script>
+var FRV=(function(){
+var NB={"1":"un","2":"deux"};
+function norm(t){
+t=String(t==null?"":t).split("💡")[0];
+t=t.replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}️]/gu," ").replace(/[’‘`]/g,"'");
+t=t.replace(/\b([ABC])([12])\b/g,function(m,a,b){return a+" "+NB[b]});
+t=t.replace(/\b(\d{1,2})\s?h(?:\s?(\d{1,2}))?(?![A-Za-zÀ-ÿ])/g,function(m,h,mn){return h+" heure"+(+h>1?"s":"")+(mn&&mn!=="00"?" "+mn:"")});
+t=t.replace(/(\d)\s*€/g,"$1 euros").replace(/€/g," euros").replace(/(\d)\s*%/g,"$1 pour cent").replace(/&/g," et ");
+t=t.replace(/\bM\.\s/g,"monsieur ").replace(/\bMme\.?/g,"madame").replace(/\bMlle\.?/g,"mademoiselle").replace(/\bn°\s?/gi,"numéro ").replace(/\betc\.?/gi,"et cetera");
+t=t.replace(/À\+/g,"À plus").replace(/\s\+\s/g," plus ").replace(/\s=\s/g," égale ").replace(/\bCOD\b/g,"C O D").replace(/\bDELF\b/g,"delf").replace(/\bDALF\b/g,"dalf").replace(/\bTEF\b/g,"T E F").replace(/\bTCF\b/g,"T C F").replace(/\bFLE\b/g,"F L E");
+t=t.replace(/\s*\/\s*/g,", ").replace(/[→⇒]/g,", ").replace(/…|\.{3}/g,", ").replace(/[«»"“”]/g,"").replace(/_{2,}/g,", ").replace(/\s[–—]\s|[–—]/g,", ").replace(/[()]/g,", ");
+t=t.replace(/\s+,/g,",").replace(/,\s*,+/g,",").replace(/\s+([.!?])/g,"$1").replace(/\s+/g," ").replace(/^[,\s]+/,"").trim();
+return t}
+function voices(){try{return(window.speechSynthesis&&speechSynthesis.getVoices())||[]}catch(e){return[]}}
+function pick(){var fr=voices().filter(function(v){return/^fr([-_]|$)/i.test(v.lang)});
+var f=fr.filter(function(v){return/^fr[-_]FR$/i.test(v.lang)});if(f.length)fr=f;
+function sc(v){var n=v.name||"";return(/natural|neural|online/i.test(n)?4:0)+(/google/i.test(n)?3:0)+(/hortense|denise|henri|julie|paul|thomas|am[ée]lie|audrey|marie|eloise|vivienne|remy|rémy/i.test(n)?2:0)}
+fr.sort(function(a,b){return sc(b)-sc(a)});return fr[0]||null}
+function state(){var all=voices();if(!all.length)return"unknown";return pick()?"ok":"none"}
+function info(){var v=pick();return v?v.name+" ("+v.lang+")":""}
+function say(arr){if(!window.speechSynthesis||state()==="none")return false;
+arr=[].concat(arr);var v=pick();try{speechSynthesis.cancel()}catch(e){}
+setTimeout(function(){arr.forEach(function(t){var x=norm(t);if(!x)return;var u=new SpeechSynthesisUtterance(x);u.lang=v?v.lang:"fr-FR";if(v)u.voice=v;u.rate=.88;speechSynthesis.speak(u)})},80);return true}
+var MSG="Aucune voix française n’est installée sur cet appareil : la prononciation serait fausse. Installez une voix française (Windows : Paramètres > Heure et langue > Voix ; Android : Paramètres > Synthèse vocale), ou utilisez le texte affiché.";
+try{if(window.speechSynthesis){speechSynthesis.getVoices();if(speechSynthesis.addEventListener)speechSynthesis.addEventListener("voiceschanged",function(){})}}catch(e){}
+return{norm:norm,pick:pick,say:say,state:state,info:info,MSG:MSG}})();
+
 </script>
 </body>
 </html>
